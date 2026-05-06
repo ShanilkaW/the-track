@@ -1,8 +1,8 @@
  const sheet = SpreadsheetApp.getActiveSheet(); // Get the active sheet
 
-function setRangeToFalse(rangeToFalse) {
-  const range = sheet.getRange(rangeToFalse); 
-  range.setValue(false); 
+function clearRange(rangeToClear) {
+  const range = sheet.getRange(rangeToClear); 
+  range.setValue("");
 }
 
 function onEdit(e) {
@@ -10,10 +10,10 @@ function onEdit(e) {
   const sheet = range.getSheet();
 
   // Condition: Only run if cell 'A1' on 'Sheet1' is edited
-  if (sheet.getName() === "Daily Routines (M)" && range.getA1Notation() === "C34") {
-    setRangeToFalse("D3:F31");
-    const cell2 = sheet.getRange("C34");
-    cell2.setValue(false)
+  if (sheet.getName() === SHEET_NAME && range.getA1Notation() === CLEAR_BUTTON) {
+    clearRange(CLEAR_RANGE);
+    const BUTTON_TO_RESET = sheet.getRange("CLEAR_BUTTON");
+    BUTTON_TO_RESET.setValue(false)
   }
 }
 
